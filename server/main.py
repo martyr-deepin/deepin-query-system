@@ -1,5 +1,6 @@
 import json
 import re
+import traceback
 
 from flask import Flask
 from flask import request
@@ -72,5 +73,6 @@ def query():
         return json.dumps(ret_json)
 
     except Exception as e:
+        print(traceback.format_exc())
         ret_json = {'failed': True, 'result': str(e)}
         return json.dumps(ret_json)
