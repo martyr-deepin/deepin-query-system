@@ -1,0 +1,23 @@
+.footer{
+  margin: 33px auto 67px;
+  font-size: 12px;
+  text-align: center;
+  color: #9fa4b2;
+  .links-container{
+    .links{
+      color: #9fa4b2;
+      text-decoration: none;
+      margin-left: 28px;
+      &:first-child{
+        margin-left: 0;
+      }
+      &:hover{
+        color: #03638f;
+      }
+    }
+  }
+  .com{
+    margin-top: 12px;
+  }
+}
+

@@ -1,0 +1,84 @@
+@mixin wg_button($height: 34px, $color: #fff, $bg_color: #3294cd, $hover_color: $bg_color, $font_size: 14px){
+  @include border-radius(4px);
+  height: $height;
+  font-size: $font_size;
+  padding: 0px 20px;
+  border: 0px;
+  color: $color;
+  background-color: $bg_color;
+  cursor: pointer;
+  &:hover{
+    background-color: $hover_color;
+  }
+}
+
+@mixin wg_hr($color: #e6e6e6, $width: $main_page_width - (33px * 2)){
+  width: $width;
+  background-color: #e6e6e6;
+  height: 1px;
+  border: 0;
+}
+
+@mixin wg_a(){
+  text-decoration: none;
+  color: #03638f;
+  &:hover{
+    color: #0091d4;
+  }
+}
+
+@mixin wg_combobox($height: 20px){
+  border-radius: 4px;
+  height: $height;
+  font-size: 12px;
+  padding: 0 8px;
+  color: #303646;
+  background-color: #fff;
+}
+
+@mixin wg_textinput(){
+  font-size: 14px;
+  color: #303646;
+  height: 32px;
+}
+
+@mixin wg_select($width, $height, $color){
+  position: relative;
+  height: $height;
+  width: $width;
+  color: $color;
+  button{
+    text-align: left;
+    cursor: pointer;
+    display: block;
+    color: $color;
+    background: url(/images/icon_arrow_deep.png) no-repeat ($width - 20px) center;
+  }
+  ul{
+    display: none;
+    position: absolute;
+    left: 0;
+    top: $height;
+    width: $width;
+    font-size: initial;
+    padding: 0;
+    background-color: #fff;
+    border:{
+      style: solid;
+      color: #ccc;
+      width: 1px;
+      radius: 0 0 4px 4px;
+    }
+    li{
+      list-style: none;
+      cursor: pointer;
+      text-align: left;
+      padding: 0 12px;
+      &:hover{
+        color: #fff;
+        background-color: #337ab7;
+      }
+    }
+  }
+}
+

@@ -1,0 +1,70 @@
+<div class="search-page">
+  <div class="main">
+    <div class="ctrl-bar">
+      <div class="search-bar">
+        <input type="text"
+            class="form-control search-keyword-input"
+            ng-model="keyword"
+            ng-disabled="searching"
+            ng-keypress="($event.which === 13)?search_click(keyword):0">
+        <button class="search-btn"
+            ng-class="{'search-btn-disabled': searching }"
+            ng-disabled="searching"
+            ng-click="search_click(keyword)">
+          搜索
+        </button>
+      </div>
+    </div>
+    <hr class='ctrlbar-result-spliter'>
+    <div class='hint' ng-if="!searching && !search_finish">
+      <span>提示：你可以输入cr的链接，找到相关仓库、tower、bugzilla等信息</span>
+    </div>
+    <div class="loading-container" ng-if="!search_finish && searching">
+      <img class="loading" src="images/loading.gif">
+    </div>
+    <div class="results"
+        ng-if="search_finish"
+        ng-init=":: _keyword = keyword">
+      <span class="overall">
+        <span> 搜索结果：</span>
+        找到
+        <font color="#d21a11">{{ _keyword }}</font>
+        相关内容 {{ result_length }} 条
+      </span>
+      <div class='repo-item' ng-if='result.packages.length'>
+        <ul>
+          <li class="tab-item"
+              ng-init='id=$index'
+              ng-repeat="package in result.packages"
+              ng-class="{'active': is_active(package)}"
+              ng-click="tab_click(package)">
+            <span>dde ({{ package.repo_codename }})</span>
+          </li>
+        </ul>
+        <div class='repo-content'>
+          <a class='pkg-name' target='_blank' ng-href='{{ current_tab_val.deb_url }}'>
+            {{ result.package_name }}
+          </a>
+          <span class='pkg-version'>({{ current_tab_val.version }})</span>
+          <a class='repo-link' target='_blank' ng-href='{{ current_tab_val.repo_url }}' >
+            {{ current_tab_val.repo_url }} {{ current_tab_val.repo_codename }}
+          </a>
+          <hr>
+          <pre>{{ current_tab_val.shell }}</pre>
+          <button class='copy-code-btn' ng-click='copy_code(current_tab_val.shell)'>复制代码</button>
+          <span class='copy-code-success' ng-if='copy_code_success'>复制成功!</span>
+          <span class='copy-code-failed' ng-if='copy_code_failed'>Ah oh~ O.O 复制失败了，请手动复制</span>
+        </div>
+      </div>
+      <result-item ng-if='result.tower_url'
+          item-title='"tower"'
+          item-url='result.tower_url'>
+      </result-item>
+      <result-item ng-if='result.bugzilla_url'
+          item-title='"bugzilla"'
+          item-url='result.bugzilla_url'>
+      </result-item>
+    </div>
+  </div>
+</div>
+

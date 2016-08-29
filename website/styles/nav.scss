@@ -1,0 +1,108 @@
+.navbar-static-top{
+  background-color: #244151;
+  height: 60px;
+  width: 100%;
+
+  .navbar-container{
+    width: $main_page_width;
+    margin: auto auto;
+    @include vertical-align();
+
+    .navbar-title{
+      font-size: 18px;
+      margin-left: 22px;
+      display: inline-block;
+      a{
+        color: #fff;
+        text-decoration: none;
+      }
+    }
+
+    .navbar-float-container-1{
+      float: right;
+
+      .navbar-search-icon{
+        display: inline-block;
+        a{
+          font-size: 18px;
+          color: #a2b9c7;
+          cursor: pointer;
+          position: relative;
+          top: 2px;
+          left: 10px;
+          text-decoration: none;
+        }
+      }
+      .navbar-user-container{
+        display: inline-block;
+        margin: auto 22px 22px;
+        cursor: pointer;
+        .navbar-user-icon{
+          position: relative;
+          top: 2px;
+          left: 4px;
+          display: inline-block;
+          font-size: 16px;
+          color: #a2b9c7;
+        }
+        .navbar-user-name{
+          margin-left: 9px;
+          display: inline-block;
+          color: #a2b9c7;
+          font-size: 12px;
+        }
+
+        .navbar-user-arrow-icon{
+          width: 16px;
+          height: 16px;
+          display: inline-block;
+          background: url("/images/icon_arrow.png") no-repeat 0 6px;
+        }
+        .logout-panel{
+          position: absolute;
+          top: 36px;
+          right: 20px;
+          .arrow{
+            position: relative;
+            top: 1px;
+            left: 60px;
+            width: 0;
+            height: 0;
+            border:{
+              width: 0 7px 7px 7px;
+              color: transparent;
+              style: solid;
+              bottom-color: #092234;
+            }
+          }
+          .main{
+            height: 43px;
+            font-size: 12px;
+            line-height: 33px;
+            background-color: #092234;
+            border-radius: 4px;
+            padding-top: 5px;
+            .hover{
+              cursor: pointer;
+              &:hover{
+                background-color: #3195cc;
+              }
+              .icon{
+                font-size: 16px;
+                position: relative;
+                top: 2px;
+                margin: 10px 8px 0 21px;
+                color: #fff;
+              }
+              .char{
+                margin: 0 21px 0 0;
+                color: #fff;
+                text-align: center;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
