@@ -1,10 +1,11 @@
 import re
+import os
 
 import requests
 
 from utils.singleton import Singleton
 
-REPO_BASE = 'http://localhost:16001'
+REPO_BASE = '%s' % os.getenv('REPO_SERVER')
 
 
 class Repository(Singleton):
