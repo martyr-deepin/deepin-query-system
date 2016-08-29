@@ -2,7 +2,8 @@
 
 import { parse_resp, clipboard } from "../utils";
 
-let SERVER = 'http://192.168.11.88:16000';
+let SERVER = 'http://10.0.2.76:16000';
+
 main_app.controller('MainController', ($scope, $http)=>{
     $scope.searching = false;
     $scope.search_finish = false;
