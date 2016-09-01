@@ -60,7 +60,7 @@ function search_click(keyword, $scope, $http){
     .then((data)=>{
         console.log(data);
         if(data.failed){
-            console.err(data.result);
+            console.error(data.result);
         }
         else{
             $scope.result = data.result;
