@@ -57,7 +57,7 @@ class RepositoryServer:
         return shell
 
 
-@app.route('/package/<string:name>', methods=['GET'])
+@app.route('/repo/package/<string:name>', methods=['GET'])
 def package(name):
     repo = RepositoryServer()
     result = repo.query(name)
