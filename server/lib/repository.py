@@ -25,6 +25,10 @@ class Repository(Singleton):
         path = '/package/%s' % package
         r = self.__get_json(path)
         package_list = []
+
+        if r.get('failed'):
+            raise Exception('sub-system(repo-server) error: %s' % r.get('result'))
+
         for p in r.get('result'):
             v = p.get('version')
             r = re.compile('[\d\.]+\+r\w+~g(.+)')
@@ -34,8 +38,8 @@ class Repository(Singleton):
                 continue
 
             pkg_comm_hash = l[0]
-            #if not commit.startswith(pkg_comm_hash):
-            #    continue
+            if not commit.startswith(pkg_comm_hash):
+                continue
 
             package_list.append(p)
 
