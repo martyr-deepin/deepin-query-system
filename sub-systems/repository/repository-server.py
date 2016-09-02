@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 
 import json
+import logging
+import traceback
 
 import apt
 from flask import Flask
@@ -9,6 +11,7 @@ from tornado.httpserver import HTTPServer
 from tornado.ioloop import IOLoop
 
 app = Flask(__name__)
+logging.getLogger().setLevel(logging.DEBUG)
 
 
 class RepositoryServer:
@@ -59,10 +62,15 @@ class RepositoryServer:
 
 @app.route('/package/<string:name>', methods=['GET'])
 def package(name):
-    repo = RepositoryServer()
-    result = repo.query(name)
-    ret = {'failed': False, 'result': result}
-    return json.dumps(ret)
+    try:
+        repo = RepositoryServer()
+        result = repo.query(name)
+        ret = {'failed': False, 'result': result}
+        return json.dumps(ret)
+    except Exception as e:
+        print(traceback.format_exc())
+        ret = {'failed': True, 'result': str(e)}
+        return json.dumps(ret)
 
 
 if __name__ == '__main__':
