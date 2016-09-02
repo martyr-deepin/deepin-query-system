@@ -2,11 +2,12 @@
 
 import { parse_resp, clipboard } from "../utils";
 
-let SERVER = 'http://10.0.2.76:16000';
+import { BACKEND } from "../constants";
 
 main_app.controller('MainController', ($scope, $http)=>{
     $scope.searching = false;
     $scope.search_finish = false;
+    $scope.search_error = '';
     $scope.copy_code_success = false;
     $scope.copy_code_failed = false;
     $scope.result_length = 0;
@@ -50,8 +51,9 @@ function search_click(keyword, $scope, $http){
 
     $scope.searching = true;
     $scope.search_finish = false;
+    $scope.search_error = '';
 
-    let url = `${SERVER}/query`;
+    let url = `${BACKEND}/query`;
     $http.get(url, {
         params: {
             "content": keyword
@@ -61,6 +63,9 @@ function search_click(keyword, $scope, $http){
         console.log(data);
         if(data.failed){
             console.error(data.result);
+            $scope.searching = false;
+            $scope.search_finish = true;
+            $scope.search_error = data.result;
         }
         else{
             $scope.result = data.result;
@@ -96,5 +101,4 @@ function count_result_length($scope){
 
     $scope.result_length = len;
     console.log($scope.result_length);
-    //$scope.$apply();
 }

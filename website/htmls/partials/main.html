@@ -25,11 +25,15 @@
     <div class="results"
         ng-if="search_finish"
         ng-init=":: _keyword = keyword">
-      <span class="overall">
+      <span class="overall" ng-if='!search_error.length'>
         <span> 搜索结果：</span>
         找到
         <font color="#d21a11">{{ _keyword }}</font>
         相关内容 {{ result_length }} 条
+      </span>
+      <span class="search_error" ng-if='search_error.length'>
+        <span> &gt;.&lt; 出错啦：</span>
+        <font color="#d21a11">{{ search_error }}</font>
       </span>
       <div class='repo-item' ng-if='result.packages.length'>
         <ul>

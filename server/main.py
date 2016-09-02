@@ -16,7 +16,7 @@ app = Flask(__name__)
 CORS(app)
 
 
-@app.route("/query")
+@app.route("/api/v1/query")
 def query():
     '''
     result = {
