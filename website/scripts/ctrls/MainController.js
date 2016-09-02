@@ -23,7 +23,6 @@ main_app.controller('MainController', ($scope, $http)=>{
 
     $scope.is_active = (value)=>{
         if($scope.current_tab_val === value){
-            console.log('active');
             return true;
         }
         return false;
@@ -60,7 +59,6 @@ function search_click(keyword, $scope, $http){
         }
     }).then(parse_resp)
     .then((data)=>{
-        console.log(data);
         if(data.failed){
             console.error(data.result);
             $scope.searching = false;
@@ -100,5 +98,4 @@ function count_result_length($scope){
     }
 
     $scope.result_length = len;
-    console.log($scope.result_length);
 }
